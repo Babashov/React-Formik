@@ -1,5 +1,5 @@
 import './App.css';
-import { Formik, Field, Form } from 'formik';
+import { Formik } from 'formik';
 
 function App() {
   return (
@@ -10,30 +10,29 @@ function App() {
         lastName: '',
         email: '',
       }}
-      onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 500));
+      onSubmit={(values) => {
         alert(JSON.stringify(values, null, 2));
       }}
     >
-      <Form>
+
+      {({handleSubmit,handleChange})=>(
+        <form onSubmit={handleSubmit}>
+
         <label htmlFor="firstName">First Name</label>
-        <Field id="firstName" name="firstName" placeholder="Jane" />
+        <input onChange={handleChange} name="firstName" />
         <br/>
 
         <label htmlFor="lastName">Last Name</label>
-        <Field id="lastName" name="lastName" placeholder="Doe" />
+        <input onChange={handleChange} name="lastName" />
         <br/>
 
         <label htmlFor="email">Email</label>
-        <Field
-          id="email"
-          name="email"
-          placeholder="jane@acme.com"
-          type="email"
-        />
+        <input onChange={handleChange} type="email" name="email" />
         <br/>
         <button type="submit">Submit</button>
-      </Form>
+      </form>
+      )}
+      
     </Formik>
     </div>
   );
