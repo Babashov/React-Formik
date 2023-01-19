@@ -2,7 +2,7 @@ import {useFormik} from 'formik'
 import validationSchema from '../yupjs';
 
 function Signup() {
-    const {handleSubmit,handleChange,values,errors} = useFormik({
+    const {handleSubmit,handleChange,handleBlur,values,errors,touched} = useFormik({
         initialValues:{
             email: '',
             password:'',
@@ -25,18 +25,18 @@ function Signup() {
           <form onSubmit={handleSubmit}>
 
           <label htmlFor="email">Email</label>
-          <input onChange={handleChange} type="email" name="email" />
-          {errors.email && <div style={{color:'white',backgroundColor:'red'}}>{errors.email}</div>}
+          <input onChange={handleChange} onBlur={handleBlur} type="email" name="email" />
+          {errors.email && touched.email && <div style={{color:'white',backgroundColor:'red'}}>{errors.email}</div>}
           <br/><br/>
 
           <label htmlFor="password">Password</label>
-          <input onChange={handleChange} type="password" name="password" />
-          {errors.password && <div style={{color:'white',backgroundColor:'red'}}>{errors.password}</div>}
+          <input onChange={handleChange} onBlur={handleBlur} type="password" name="password" />
+          {errors.password && touched.password && <div style={{color:'white',backgroundColor:'red'}}>{errors.password}</div>}
           <br/><br/>
 
           <label htmlFor="passwordConfirm">Confirm password</label>
-          <input onChange={handleChange} type="password" name="passwordConfirm" />
-          {errors.passwordConfirm && <div style={{color:'white',backgroundColor:'red'}}>{errors.passwordConfirm}</div>}
+          <input onChange={handleChange} onBlur={handleBlur} type="password" name="passwordConfirm" />
+          {errors.passwordConfirm && touched.passwordConfirm && <div style={{color:'white',backgroundColor:'red'}}>{errors.passwordConfirm}</div>}
           <br/><br/>
 
           <br/><br/>
